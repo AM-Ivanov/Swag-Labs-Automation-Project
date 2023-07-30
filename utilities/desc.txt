@@ -1,0 +1,1 @@
+Some environment for tests (for example for Pytest)
