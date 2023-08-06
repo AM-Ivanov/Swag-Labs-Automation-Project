@@ -1,4 +1,3 @@
-from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 
 
@@ -10,8 +9,8 @@ class BasePage:
 
     def elements_are_on_page(self, elements):
         self.driver.implicitly_wait(4)
-        for element in elements:
+        for name in elements:
             try:
-                self.driver.find_element(By.XPATH, elements[element])
+                elements[name].find()
             except:
-                print(f'Failed to find element "{element}"')
+                print(f'Failed to find element "{name}"') # тут надо пофиксить принт, возвращает не пойми что

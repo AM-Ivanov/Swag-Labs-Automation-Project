@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class WebDriverSetup:
@@ -6,7 +7,7 @@ class WebDriverSetup:
         self.browser = browser
         self.required_options = required_options
 
-    def configure(self) -> webdriver.Chrome | webdriver.Firefox | webdriver.Edge | webdriver.Ie:
+    def configure(self) -> WebDriver:
         options_browsers_dict = {'Chrome': [webdriver.ChromeOptions(), webdriver.Chrome],
                                  'Firefox': [webdriver.FirefoxOptions(), webdriver.Firefox],
                                  'Edge': [webdriver.EdgeOptions(), webdriver.Edge],
