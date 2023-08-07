@@ -10,11 +10,11 @@ class Button(BaseElement):
         self.wait = WebDriverWait(driver, wait)
 
     def click(self):
-        self._find()
+        self.find()
         self.wait.until(ec.element_to_be_clickable(self.element))
         self.element.click()
 
     def button_name_is(self, name):
-        self._find()
+        self.find()
         assert self.element.get_attribute('value') == str(name), \
             f'Incorrect text in field. Expected "{name}", actually "{self.element.get_attribute("value")}".'

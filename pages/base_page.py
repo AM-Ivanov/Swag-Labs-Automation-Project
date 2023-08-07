@@ -10,7 +10,4 @@ class BasePage:
     def elements_are_on_page(self, elements):
         self.driver.implicitly_wait(4)
         for name in elements:
-            try:
-                elements[name].find()
-            except:
-                print(f'Failed to find element "{name}"') # тут надо пофиксить принт, возвращает не пойми что
+            elements[name].find()
