@@ -1,8 +1,12 @@
-from base.colors import colors
+from selenium.webdriver.chrome.webdriver import WebDriver
 from base.elements.base_element import BaseElement
+from base.colors import colors
+from base.error_texts import Errors
 
 
 class InputField(BaseElement):
+    def __init__(self, locator: str, driver: WebDriver):
+        super().__init__(locator, driver)
 
     def enter_value(self, value):
         self.find()
@@ -24,9 +28,11 @@ class InputField(BaseElement):
 
     def border_color_equals(self, color):
         self.find()
-        if self.element.value_of_css_property('border'):
-            assert self.element.value_of_css_property('border-color') == colors[color], \
-                f'Incorrect border color. Expected "{colors[color]}", actually "{self.element.value_of_css_property("border-color")}"'
-        elif self.element.value_of_css_property('border-bottom'):
-            assert self.element.value_of_css_property('border-color-bottom') == colors[color], f'Incorrect border color. \
-                    Expected "{colors[color]}", actually "{self.element.value_of_css_property("border-color-bottom")}"'
+        if self.element.value_of_css_property('border-color'):
+            assert str(self.element.value_of_css_property('border-color')) == colors[color], \
+                Errors.validation_error.format('border-color', colors[color],
+                                               self.element.value_of_css_property('border-color'))
+        elif str(self.element.value_of_css_property('border-bottom-color')):
+            assert self.element.value_of_css_property('border-color-bottom') == colors[color], \
+                Errors.validation_error.format('border-color-bottom', colors[color],
+                                               self.element.value_of_css_property('border-color-bottom'))

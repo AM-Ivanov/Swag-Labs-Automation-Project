@@ -17,7 +17,8 @@ class AuthPage(BasePage):
         self.failed_auth_elements = {
             'FAILED_LOGIN_BANNER': BaseElement('//div[@class="error-message-container error"]'
                                                , self.driver),
-            'FAILED_LOGIN_TEXT': BaseElement('//h3[@data-test="error"]', self.driver),
+            'FAILED_LOGIN_TEXT': BaseElement('//div[@class="error-message-container error"]/h3[@data-test="error"]',
+                                             self.driver),
             'FAILED_LOGIN_BUTTON': Button('//button[@class="error-button"]', self.driver),
             'FAILED_LOGIN_USERNAME_FIELD_ICON': BaseElement('//input[@id="user-name"] \
                                         /following-sibling::*[@data-icon="times-circle"]', self.driver),
