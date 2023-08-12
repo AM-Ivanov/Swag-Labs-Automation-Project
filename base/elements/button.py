@@ -1,13 +1,11 @@
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from base.elements.base_element import BaseElement
 
 
 class Button(BaseElement):
-    def __init__(self, locator: str, driver: WebDriver, wait=4):
-        super().__init__(locator, driver)
-        self.wait = WebDriverWait(driver, wait)
+    def __init__(self, name, locator: str, driver: WebDriver, wait=4):
+        super().__init__(name, locator, driver, wait)
 
     def click(self):
         self.find()

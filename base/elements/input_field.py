@@ -1,12 +1,10 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from base.elements.base_element import BaseElement
-from base.colors import colors
-from base.error_texts import Errors
 
 
 class InputField(BaseElement):
-    def __init__(self, locator: str, driver: WebDriver):
-        super().__init__(locator, driver)
+    def __init__(self, name, locator: str, driver: WebDriver, wait=3):
+        super().__init__(name, locator, driver, wait)
 
     def enter_value(self, value):
         self.find()

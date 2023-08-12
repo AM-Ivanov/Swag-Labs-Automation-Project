@@ -1,22 +1,29 @@
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.remote.webelement import WebElement
-from base.error_texts import Errors
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
+from base.error_texts import Errors
 from base.colors import colors
 
 
 class BaseElement:
-    def __init__(self, locator: str, driver: WebDriver):
+    def __init__(self, name: str, locator: str, driver: WebDriver, wait=4):
         self.driver = driver
+        self.wait = WebDriverWait(driver, wait)
         self.locator = locator
+        self.name = name
         self.element = None  # None because there is no need to find element when creating page class object
 
     def find(self):
         if self.element is None:
-            self.element = self.driver.find_element(By.XPATH, self.locator)
+            self.element = self.wait.until(ec.presence_of_element_located((By.XPATH, self.locator)))
 
     def is_presented(self):
-        return self.driver.find_element(By.XPATH, self.locator).is_enabled()
+        try:
+            self.driver.find_element(By.XPATH, self.locator)
+        except:
+            return False
+        return True
 
     def element_text_equals(self, text):
         self.find()

@@ -7,7 +7,7 @@ class BasePage:
         self.url = url
         self.driver.get(self.url)
 
-    def elements_are_on_page(self, elements):
-        self.driver.implicitly_wait(4)
-        for name in elements:
-            elements[name].find()
+    @staticmethod
+    def elements_are_on_page(elements):
+        for element in elements:
+            element.find()

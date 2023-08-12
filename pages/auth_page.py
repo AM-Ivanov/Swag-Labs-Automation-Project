@@ -5,23 +5,27 @@ from base.elements.base_element import BaseElement
 
 
 class AuthPage(BasePage):
-
     def __init__(self, driver, url='https://www.saucedemo.com/'):
         super().__init__(driver, url)
-        self.elements = {
-            'HEADER': BaseElement('//div[@class="login_logo"]', self.driver),
-            'USERNAME_FIELD': InputField('//input[@id="user-name"]', self.driver),
-            'PASSWORD_FIELD': InputField('//input[@id="password"]', self.driver),
-            'LOGIN_BUTTON': Button('//input[@id="login-button"]', self.driver),
-        }
-        self.failed_auth_elements = {
-            'FAILED_LOGIN_BANNER': BaseElement('//div[@class="error-message-container error"]'
-                                               , self.driver),
-            'FAILED_LOGIN_TEXT': BaseElement('//div[@class="error-message-container error"]/h3[@data-test="error"]',
-                                             self.driver),
-            'FAILED_LOGIN_BUTTON': Button('//button[@class="error-button"]', self.driver),
-            'FAILED_LOGIN_USERNAME_FIELD_ICON': BaseElement('//input[@id="user-name"] \
-                                        /following-sibling::*[@data-icon="times-circle"]', self.driver),
-            'FAILED_LOGIN_PASSWORD_FIELD_ICON': BaseElement('//input[@id="password"] \
-                                        /following-sibling::*[@data-icon="times-circle"]', self.driver)
-        }
+        # Basic elements
+        self.HEADER = BaseElement('HEADER', '//div[@class="login_logo"]', self.driver)
+        self.USERNAME_FIELD = InputField('USERNAME_FIELD', '//input[@id="user-name"]', self.driver)
+        self.PASSWORD_FIELD = InputField('PASSWORD_FIELD', '//input[@id="password"]', self.driver)
+        self.LOGIN_BUTTON = Button('LOGIN_BUTTON', '//input[@id="login-button"]', self.driver)
+        self.basic_elements = (
+            self.HEADER, self.USERNAME_FIELD, self.PASSWORD_FIELD, self.LOGIN_BUTTON)
+        # Failed auth
+        self.FAILED_LOGIN_BANNER = BaseElement(
+            'FAILED_LOGIN_BANNER', '//div[@class="error-message-container error"]', self.driver)
+        self.FAILED_LOGIN_TEXT = BaseElement(
+            'FAILED_LOGIN_TEXT', '//div[@class="error-message-container error"]/h3[@data-test="error"]', self.driver)
+        self.FAILED_LOGIN_BUTTON = Button('FAILED_LOGIN_BUTTON', '//button[@class="error-button"]', self.driver)
+        self.FAILED_LOGIN_USERNAME_FIELD_ICON = BaseElement(
+            'FAILED_LOGIN_USERNAME_FIELD_ICON',
+            '//input[@id="user-name"]/following-sibling::*[@data-icon="times-circle"]', self.driver)
+        self.FAILED_LOGIN_PASSWORD_FIELD_ICON = BaseElement(
+            'FAILED_LOGIN_PASSWORD_FIELD_ICON',
+            '//input[@id="password"]/following-sibling::*[@data-icon="times-circle"]', self.driver)
+        self.failed_auth_elements = (
+            self.FAILED_LOGIN_BANNER, self.FAILED_LOGIN_TEXT, self.FAILED_LOGIN_BUTTON,
+            self.FAILED_LOGIN_USERNAME_FIELD_ICON, self.FAILED_LOGIN_PASSWORD_FIELD_ICON)
