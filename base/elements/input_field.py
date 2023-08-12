@@ -25,14 +25,3 @@ class InputField(BaseElement):
         assert self.element.get_attribute(
             'placeholder') == expected_value, f'Incorrect placeholder of the field. Expected "{expected_value}", \
                 actually "{self.element.get_attribute("placeholder")}"'
-
-    def border_color_equals(self, color):
-        self.find()
-        if self.element.value_of_css_property('border-color'):
-            assert str(self.element.value_of_css_property('border-color')) == colors[color], \
-                Errors.validation_error.format('border-color', colors[color],
-                                               self.element.value_of_css_property('border-color'))
-        elif str(self.element.value_of_css_property('border-bottom-color')):
-            assert self.element.value_of_css_property('border-color-bottom') == colors[color], \
-                Errors.validation_error.format('border-color-bottom', colors[color],
-                                               self.element.value_of_css_property('border-color-bottom'))

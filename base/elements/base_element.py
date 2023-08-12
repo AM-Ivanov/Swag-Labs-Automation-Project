@@ -24,7 +24,7 @@ class BaseElement:
 
     def color_equals(self, color):
         self.find()
-        assert str(self.element.value_of_css_property('color')) == colors[color], \
+        assert self.element.value_of_css_property('color') == colors[color], \
             Errors.validation_error.format('color', colors[color], self.element.value_of_css_property('color'))
 
     def background_color_equals(self, color):
@@ -32,3 +32,14 @@ class BaseElement:
         assert self.element.value_of_css_property('background-color') == colors[color], \
             Errors.validation_error.format('background-color', colors[color],
                                            self.element.value_of_css_property('background-color'))
+
+    def border_color_equals(self, color):
+        self.find()
+        assert self.element.value_of_css_property('border-color') == colors[color], Errors.validation_error.format(
+            'border-color', colors[color], self.element.value_of_css_property('border-color'))
+
+    def border_bottom_color_equals(self, color):
+        self.find()
+        assert self.element.value_of_css_property('border-bottom-color') == colors[
+            color], Errors.validation_error.format(
+            'border-color', colors[color], self.element.value_of_css_property('border-bottom-color'))
