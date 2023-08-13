@@ -1,11 +1,11 @@
 import pytest
 from tests.fixtures import auth_page_fixture
 from pages.inventory_page import InventoryPage
+from base.error_texts import Errors
 
 
 @pytest.mark.functional_auth_tests
 class TestAuth:
-    @pytest.mark.positive_auth_tests
     @pytest.mark.basic_auth_tests
     def test_successfull_auth(self, auth_page_fixture):
         driver, auth_page = auth_page_fixture[0], auth_page_fixture[1]
@@ -33,4 +33,4 @@ class TestAuth:
             'Epic sadface: Username and password do not match any user in this service')
         auth_page.FAILED_LOGIN_BUTTON.click()
         for elem in auth_page.failed_auth_elements:
-            assert elem.is_presented() is False, f"Element {elem.name} didn't disappear from the page like expected."
+            assert elem.is_presented() is False, Errors.element_presence_error.format(elem.name, 'is')

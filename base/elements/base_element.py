@@ -27,26 +27,24 @@ class BaseElement:
 
     def element_text_equals(self, text):
         self.find()
-        assert self.element.text == text, f'Incorrect element text. Expected {text}, actually {self.element.text}'
+        assert self.element.text == text, Errors.common_error.format('element text', text, self.element.text)
 
     def color_equals(self, color):
         self.find()
-        assert self.element.value_of_css_property('color') == colors[color], \
-            Errors.validation_error.format('color', colors[color], self.element.value_of_css_property('color'))
+        assert self.element.value_of_css_property('color') == colors[color], Errors.common_error.format(
+            'element color', colors[color], self.element.value_of_css_property('color'))
 
     def background_color_equals(self, color):
         self.find()
-        assert self.element.value_of_css_property('background-color') == colors[color], \
-            Errors.validation_error.format('background-color', colors[color],
-                                           self.element.value_of_css_property('background-color'))
+        assert self.element.value_of_css_property('background-color') == colors[color], Errors.common_error.format(
+            'element background color', colors[color], self.element.value_of_css_property('background-color'))
 
     def border_color_equals(self, color):
         self.find()
-        assert self.element.value_of_css_property('border-color') == colors[color], Errors.validation_error.format(
-            'border-color', colors[color], self.element.value_of_css_property('border-color'))
+        assert self.element.value_of_css_property('border-color') == colors[color], Errors.common_error.format(
+            'element border color', colors[color], self.element.value_of_css_property('border-color'))
 
     def border_bottom_color_equals(self, color):
         self.find()
-        assert self.element.value_of_css_property('border-bottom-color') == colors[
-            color], Errors.validation_error.format(
-            'border-color', colors[color], self.element.value_of_css_property('border-bottom-color'))
+        assert self.element.value_of_css_property('border-bottom-color') == colors[color], Errors.common_error.format(
+            'element border bottom color', colors[color], self.element.value_of_css_property('border-bottom-color'))

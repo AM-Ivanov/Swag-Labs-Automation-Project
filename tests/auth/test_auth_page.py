@@ -2,10 +2,10 @@ import pytest
 from tests.fixtures import auth_page_fixture
 
 
-@pytest.mark.positive_auth_tests
+@pytest.mark.basic_auth_tests
+@pytest.mark.auth_layout_tests
 class TestAuthPage:
 
-    @pytest.mark.basic_auth_tests
     def test_basic_elements_are_present(self, auth_page_fixture):
         auth_page = auth_page_fixture[1]
         auth_page.elements_are_on_page(auth_page.basic_elements)

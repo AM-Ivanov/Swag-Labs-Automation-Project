@@ -1,5 +1,6 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from base.elements.base_element import BaseElement
+from base.error_texts import Errors
 
 
 class InputField(BaseElement):
@@ -9,17 +10,15 @@ class InputField(BaseElement):
     def enter_value(self, value):
         self.find()
         self.element.send_keys(value)
-        assert self.element.get_attribute(
-            'value') == str(
-            value), f'Incorrect text in field. Expected "{value}", actually "{self.element.get_attribute("value")}".'
+        assert self.element.get_attribute('value') == str(value), \
+            Errors.common_error.format('text in field', value, self.element.get_attribute("value"))
 
     def clear(self):
         self.find()
         self.element.clear()
         assert self.element.get_attribute('value') == '', f'Field is not empty.'
 
-    def placeholder_equals(self, expected_value):
+    def placeholder_equals(self, value):
         self.find()
-        assert self.element.get_attribute(
-            'placeholder') == expected_value, f'Incorrect placeholder of the field. Expected "{expected_value}", \
-                actually "{self.element.get_attribute("placeholder")}"'
+        assert self.element.get_attribute('placeholder') == value, Errors.common_error.format(
+            'placeholder of the field', value, self.element.get_attribute("placeholder"))

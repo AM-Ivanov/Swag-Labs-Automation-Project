@@ -1,2 +1,3 @@
 class Errors:
-    validation_error = 'Incorrect {}. Expected {}, actually {}'
+    common_error = 'Incorrect {}. Expected "{}", actually "{}"'
+    element_presence_error = 'The element "{}" {} presented on the page'
